@@ -1,6 +1,7 @@
 import type { TimelineEntry } from "@/types/timeline";
 
 const CDN_BASE = "https://pub-2c40327cb94b4694af27f7abc5adcb5e.r2.dev/maoxuan/";
+const CONTENT_BASE = import.meta.env.VITE_CONTENT_BASE ?? import.meta.env.BASE_URL;
 
 export function getArticleFileBase(relPath: string) {
   const last = relPath.split("/").pop() || relPath;
@@ -8,11 +9,15 @@ export function getArticleFileBase(relPath: string) {
 }
 
 export function getOriginalMdUrl(entry: TimelineEntry) {
-  return `${import.meta.env.BASE_URL}content/毛泽东选集/${entry.relPath}`;
+  return `${CONTENT_BASE}content/毛泽东选集/${entry.relPath}`;
 }
 
 export function getInterpretationMdUrl(entry: TimelineEntry) {
-  return `${import.meta.env.BASE_URL}content/毛泽东选集_解读/${entry.relPath}`;
+  return `${CONTENT_BASE}content/毛泽东选集_解读/${entry.relPath}`;
+}
+
+export function getTimelineUrl() {
+  return `${CONTENT_BASE}timeline.md`;
 }
 
 export function getAudioUrl(entry: TimelineEntry) {

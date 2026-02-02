@@ -1,12 +1,13 @@
 import { useEffect, useMemo, useState } from "react";
 import type { TimelineData } from "@/types/timeline";
 import { parseTimelineMarkdown } from "@/utils/timelineParser";
+import { getTimelineUrl } from "@/utils/contentPaths";
 
 let timelinePromise: Promise<TimelineData> | null = null;
 
 async function loadTimeline(): Promise<TimelineData> {
   if (!timelinePromise) {
-    timelinePromise = fetch(`${import.meta.env.BASE_URL}timeline.md`, { cache: "no-store" })
+    timelinePromise = fetch(getTimelineUrl(), { cache: "no-store" })
       .then((r) => {
         if (!r.ok) throw new Error("无法加载时间线");
         return r.text();

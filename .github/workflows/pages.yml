@@ -38,6 +38,8 @@ jobs:
 
       - name: Build
         run: pnpm run build
+        env:
+          VITE_CONTENT_BASE: https://pub-2c40327cb94b4694af27f7abc5adcb5e.r2.dev/maoxuan/
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
